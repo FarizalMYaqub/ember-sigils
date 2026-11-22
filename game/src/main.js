@@ -58,6 +58,9 @@ function saveBest(value) {
 function runShot(name) {
   const scene = stageShot(name, duel);
   screen = scene.screen;
+  // A staged scene is one frozen frame: floaters from the whole duel would
+  // pile up in the corner, so the shot shows the table clean.
+  duel.floaters = [];
   let painted = 0;
   function paint() {
     renderer.draw(duel, scene.screen, scene.best);

@@ -49,10 +49,12 @@ function applyCard(state, actor, target, card, events) {
     const absorbed = Math.min(target.block, dmg);
     target.block -= absorbed;
     target.hp -= (dmg - absorbed);
-    state.floaters.push({
-      side: target === state.player ? 'player' : 'enemy',
-      text: `-${dmg - absorbed}`, kind: 'dmg', age: 0,
-    });
+    if (dmg - absorbed > 0) {
+      state.floaters.push({
+        side: target === state.player ? 'player' : 'enemy',
+        text: `-${dmg - absorbed}`, kind: 'dmg', age: 0,
+      });
+    }
     if (absorbed > 0) {
       state.floaters.push({
         side: target === state.player ? 'player' : 'enemy',

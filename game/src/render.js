@@ -381,7 +381,8 @@ export function createRenderer(canvas) {
       drawFighter(duel, true);
       drawFighter(duel, false);
       drawMana(duel);
-      drawLog(duel);
+      // The log is a play-time element: the win/loss banner covers its spot.
+      if (screen !== SCREEN_OVER) drawLog(duel);
       // Turn banner.
       ctx.fillStyle = duel.phase === 'player' ? PALETTE.gold : PALETTE.muted;
       ctx.font = 'bold 14px system-ui, sans-serif';
